@@ -8,7 +8,11 @@ import (
 	"github.com/rutu-sh/procman/internal/image"
 )
 
-func BuildImage(name string, tag string, context_dir string) (*Image, *ImageError) {
+func BuildImage(
+	name string,
+	tag string,
+	context_dir string) (*Image, *ImageError) {
+
 	_logger := common.GetLogger()
 
 	imgfind, imgfind_err := image.GetImage("", name, tag)
@@ -31,13 +35,17 @@ func BuildImage(name string, tag string, context_dir string) (*Image, *ImageErro
 	abs_context_dir, err := filepath.Abs(context_dir)
 	if err != nil {
 		_logger.Error().Msgf("error getting abs path: %v", err)
-		return nil, &ImageError{Message: fmt.Sprintf("error getting abs path: %v", err)}
+		return nil, &ImageError{
+			Message: fmt.Sprintf("error getting abs path: %v", err),
+		}
 	}
 
 	res, errbuild := image.BuildImage(name, tag, abs_context_dir)
 	if errbuild != nil {
 		_logger.Error().Msgf("error building image: %v", errbuild)
-		return nil, &ImageError{Message: fmt.Sprintf("error building: %v", errbuild)}
+		return nil, &ImageError{
+			Message: fmt.Sprintf("error building: %v", errbuild),
+		}
 	}
 	if res == nil {
 		return nil, nil

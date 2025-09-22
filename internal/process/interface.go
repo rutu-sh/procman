@@ -34,8 +34,8 @@ func StartProcess(proc ProcessCreate) (*Process, *common.ProcStartErr) {
 		},
 	}
 
-	procConfYaml := getProcConfPath(process.Id)
-	if errProcWrite := WriteProcessToYaml(*process, procConfYaml); errProcWrite != nil {
+	procConfJson := getProcConfPath(process.Id)
+	if errProcWrite := WriteProcessToJson(*process, procConfJson); errProcWrite != nil {
 		return nil, &common.ProcStartErr{Code: 500, Message: fmt.Sprintf("error starting process: %v", errProcWrite)}
 	}
 

@@ -8,6 +8,7 @@ import (
 	"github.com/rutu-sh/procman/internal/common"
 	"github.com/rutu-sh/procman/internal/image"
 	"gopkg.in/yaml.v3"
+	"encoding/json"
 )
 
 func getAllProcDir() string {
@@ -27,7 +28,7 @@ func getProcConfDir() string {
 }
 
 func getProcConfPath(process_id string) string {
-	return fmt.Sprintf("%v/%v/process.yaml", getProcRootFS(process_id), getProcConfDir())
+	return fmt.Sprintf("%v/%v/process.json", getProcRootFS(process_id), getProcConfDir())
 }
 
 /*
@@ -125,9 +126,9 @@ func getProcEnv(proc *ProcessCreate) ProcessEnv {
 	return jobEnv
 }
 
-// Function to write Process object to a YAML file
-func WriteProcessToYaml(proc Process, filepath string) error {
-	data, err := yaml.Marshal(&proc)
+// Function to write Process object to a JSON file
+func WriteProcessToJson(proc Process, filepath string) error {
+	data, err := json.Marshal(&proc)
 	if err != nil {
 		return err
 	}

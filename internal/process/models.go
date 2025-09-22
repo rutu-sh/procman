@@ -7,32 +7,32 @@ import (
 type ProcessEnv map[string]string
 
 type Process struct {
-	Id         string         `yaml:"id"`
-	Name       string         `yaml:"name"`
-	Pid        uint           `yaml:"pid"`
-	ContextDir string         `yaml:"contextDir"`
-	Image      image.Image    `yaml:"image"`
-	Job        image.ImageJob `yaml:"job"`
-	Env        ProcessEnv     `yaml:"env"`
-	Network    ProcessNetwork `yaml:"network,omitempty"`
+	Id         string         `json:"id"`
+	Name       string         `json:"name"`
+	Pid        uint           `json:"pid"`
+	ContextDir string         `json:"context_dir"`
+	Image      image.Image    `json:"image"`
+	Job        image.ImageJob `json:"job"`
+	Env        ProcessEnv     `json:"env"`
+	Network    ProcessNetwork `json:"network,omitempty"`
 }
 
 type ProcessCreateImage struct {
-	Name string `yaml:"name"`
-	Tag  string `yaml:"tag"`
+	Name string `json:"name"`
+	Tag  string `json:"tag"`
 }
 
 type ProcessCreate struct {
-	Name  string `yaml:"name"`
-	Image ProcessCreateImage
-	Env   ProcessEnv `yaml:"env"`
+	Name  string 				`json:"name"`
+	Image ProcessCreateImage	`json:"image"`
+	Env   ProcessEnv 			`json:"env"`
 }
 
 type PortMapping struct {
-	HostPort uint `yaml:"hostPort"`
-	ProcPort uint `yaml:"procPort"`
+	HostPort uint `json:"host_port"`
+	ProcPort uint `json:"proc_port"`
 }
 
 type ProcessNetwork struct {
-	Ports []PortMapping `yaml:"ports,omitempty"`
+	Ports []PortMapping `json:"ports,omitempty"`
 }

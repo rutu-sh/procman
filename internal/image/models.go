@@ -1,32 +1,32 @@
 package image
 
 type Image struct {
-	Id             string `yaml:"id"`
-	Name           string `yaml:"name"`
-	ContextTempDir string `yaml:"context_temp_dir,omitempty"`
-	ImgPath        string `yaml:"imgpath,omitempty"`
-	Tag            string `yaml:"tag,omitempty"`
-	Created        string `yaml:"created,omitempty"`
+	Id             string `json:"id"`
+	Name           string `json:"name"`
+	ContextTempDir string `json:"context_temp_dir,omitempty"`
+	ImgPath        string `json:"imgpath,omitempty"`
+	Tag            string `json:"tag,omitempty"`
+	Created        string `json:"created,omitempty"`
 }
 
 // image spec structs
 
 type ImageBuildStep struct {
-	Name        string   `yaml:"name"`
-	Type        string   `yaml:"type"`
-	Source      string   `yaml:"source,omitempty"`
-	Destination string   `yaml:"destination,omitempty"`
-	Workdir     string   `yaml:"workdir,omitempty"`
-	Command     []string `yaml:"command,omitempty"`
+	Name        string   `json:"name"`
+	Type        string   `json:"type"`
+	Source      string   `json:"source,omitempty"`
+	Destination string   `json:"destination,omitempty"`
+	Workdir     string   `json:"workdir,omitempty"`
+	Command     []string `json:"command,omitempty"`
 }
 
 type ImageJob struct {
-	Name    string   `yaml:"name"`
-	Command []string `yaml:"command"`
+	Name    string   `json:"name"`
+	Command []string `json:"command"`
 }
 
 type ImageSpec struct {
-	Base  string           `yaml:"base"`
-	Steps []ImageBuildStep `yaml:"steps"`
-	Job   ImageJob         `yaml:"job"`
+	Base  string           `json:"base"`
+	Steps []ImageBuildStep `json:"steps"`
+	Job   ImageJob         `json:"job"`
 }
